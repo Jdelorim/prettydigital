@@ -1,0 +1,26 @@
+{
+  "name": "prettydigital",
+  "version": "1.0.0",
+  "description": "vr music video",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jdelorim/prettydigital.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jdelorim/prettydigital/issues"
+  },
+  "homepage": "https://github.com/Jdelorim/prettydigital#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
