@@ -1,6 +1,12 @@
 'use strict'
+
 if(window.location.pathname === '/prettydigital') {
 console.log('sup dawg');
+//sound
+    const sound = new Audio();
+    sound.src = '../assests/sound/pd.mp3';
+    sound.play();
+//
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -17,6 +23,7 @@ const onWindowResize = () => {
 
 window.addEventListener( 'resize', onWindowResize, false );
 
+////////////
 const geo = new THREE.BoxGeometry(4,4,4,1,1,1);
 const mat = new THREE.MeshPhongMaterial( {color: 0x00ff00} );
 const cube = new THREE.Mesh(geo, mat);
