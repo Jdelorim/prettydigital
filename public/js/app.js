@@ -6,8 +6,13 @@ console.log('sup dawg');
     const sound = new Audio();
     sound.src = '../assests/sound/pd.mp3';
     sound.play();
+    // var context = new AudioContext();
+    // context.createMediaElementSource(sound);
+    // var analyser = context.createAnalyser();
+    // analyser.fftsize = 1024;
+    // var array = new Uint8Array(analyser.frequencyBinCount);
+    
 //
-
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 const renderer = new THREE.WebGLRenderer( {antialias: true} );
@@ -40,6 +45,8 @@ scene.add(light);
 
 const render = () => {
     renderer.render(scene, camera);
+    cube.rotation.x += 0.003;
+    
 }   
 
 const GameLoop = () => {
