@@ -19,7 +19,8 @@
   "homepage": "https://github.com/Jdelorim/prettydigital#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^5.1.0"
+    "express-handlebars": "^5.1.0",
+    "three-gltf-loader": "^1.111.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
