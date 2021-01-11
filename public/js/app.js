@@ -20,7 +20,7 @@ const _FS = `
 #define iter 40.0
 #define scaleSpeed 3.0
 #define satSpeed 4.2
-
+//#define jtime 0.5
 uniform float jtime;
 uniform vec2 uResolution;
 uniform vec3 sphereColor;
@@ -90,12 +90,12 @@ window.addEventListener( 'resize', onWindowResize, false );
 const geo = new THREE.BoxGeometry(4,4,4,1,1,1);
 //swap this back
 //const mat = new THREE.MeshPhongMaterial( {color: 0x00ff00} );
-var dumb = THREE.UniformsUtils.merge( [
 
+const libuniforms = THREE.UniformsUtils.merge( [
     THREE.UniformsLib[ "ambient" ],
     THREE.UniformsLib[ "lights" ]
+]);
 
-] );
 const mat = new THREE.ShaderMaterial({
     uniforms: {
         sphereColor:  {
@@ -106,18 +106,16 @@ const mat = new THREE.ShaderMaterial({
         },
         jtime: {
             value: 0.0
-        }
-        
+        },
     },
-   //lights: true,
     vertexShader: _VS,
-    fragmentShader: _FS,
+    fragmentShader: _FS
 });
 
 const cube = new THREE.Mesh(geo, mat);
 const light = new THREE.PointLight('rgb(255,255,255)', 1, 50);
 
-light.position.set(0, 0, 0);
+light.position.set(-2, 0, 0);
 
 cube.position.z = -10.0;
 cube.position.x = 0.0;
@@ -126,10 +124,10 @@ cube.position.y = 0.0;
 scene.add(cube);
 scene.add(light);
 
-console.log(mat.uniforms.sphereColor.value.x);
+//console.log(mat.uniforms.sphereColor.value.x);
 const render = () => {
     renderer.render(scene, camera);
-   // console.log(performance.now());\
+    
    const c1 = new THREE.Vector3(1,0,0);
    const c2 = new THREE.Vector3(0,1,0);
    const jtime = performance.now()/1000.0;
