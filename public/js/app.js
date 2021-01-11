@@ -90,12 +90,6 @@ window.addEventListener( 'resize', onWindowResize, false );
 const geo = new THREE.BoxGeometry(4,4,4,1,1,1);
 //swap this back
 //const mat = new THREE.MeshPhongMaterial( {color: 0x00ff00} );
-
-const libuniforms = THREE.UniformsUtils.merge( [
-    THREE.UniformsLib[ "ambient" ],
-    THREE.UniformsLib[ "lights" ]
-]);
-
 const mat = new THREE.ShaderMaterial({
     uniforms: {
         sphereColor:  {
