@@ -1,4 +1,5 @@
 'use strict'
+
 if(window.location.pathname === '/prettydigital') {
     
     //const stats = new Stats();
@@ -13,7 +14,7 @@ if(window.location.pathname === '/prettydigital') {
     let vr = true;
     if(vr === true) {
         document.body.appendChild( VRButton.createButton( renderer ) );
-        renderer.vr.enabled = true;
+        renderer.xr.enabled = true;
     }
 
     const onWindowResize = () => {
@@ -35,16 +36,12 @@ if(window.location.pathname === '/prettydigital') {
     scene.add(mesh);
     scene.add(light);
 
-    const render = () => {
-        renderer.render(scene, camera);
-       
-    }   
-    
+  
     const AniLoop = () => {
         renderer.setAnimationLoop(()=>{
             mesh.rotation.x += 0.006;
             mesh.rotation.y += 0.0035;
-        render();
+            renderer.render(scene, camera);
         });
     }
     AniLoop();
