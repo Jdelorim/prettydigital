@@ -1,6 +1,6 @@
 'use strict'
 if(window.location.pathname === '/prettydigital') {
-    console.log('helloo');
+    
     //const stats = new Stats();
     //document.body.appendChild(stats.domElement); 
     
@@ -37,13 +37,15 @@ if(window.location.pathname === '/prettydigital') {
 
     const render = () => {
         renderer.render(scene, camera);
-        mesh.rotation.x += 0.006;
-        mesh.rotation.y += 0.0035;
+       
     }   
     
     const AniLoop = () => {
-        requestAnimationFrame( AniLoop );
+        renderer.setAnimationLoop(()=>{
+            mesh.rotation.x += 0.006;
+            mesh.rotation.y += 0.0035;
         render();
+        });
     }
     AniLoop();
 
