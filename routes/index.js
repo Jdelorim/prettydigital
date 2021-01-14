@@ -6,4 +6,8 @@ module.exports = (app) => {
     app.get("/prettydigital", (req, res) => {
         res.render("prettydigital", {title: "music video"});
     });
+
+    app.get("/audioviz", (req, res) => {
+        res.render("audioviz", {title: "viz"});
+    });
 }
