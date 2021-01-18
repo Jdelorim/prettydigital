@@ -4,7 +4,7 @@ const main = () => {
     
     var ctx = new (window.AudioContext || window.webkitAudioContext)();
     var analyser = ctx.createAnalyser();
-    
+    analyser.fftSize = 512;
     var audio = document.getElementById('PD');
     audio.play();
     var audioSrc = ctx.createMediaElementSource(audio);
@@ -25,7 +25,7 @@ const main = () => {
     render();
 }
 
-if(window.location.pathname === '/audioviz') {
+if(window.location.pathname === '/audioviz1') {
     window.onload = main();
 }
 
