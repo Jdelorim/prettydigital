@@ -46,10 +46,29 @@ const maingraph = () => {
     
     const geo = new THREE.BoxGeometry(4,4,4,1,1,1);
     const mat = new THREE.MeshLambertMaterial({color: 'rgb(255,0,0)'});
-    const mesh = new THREE.Mesh(geo, mat);
+   // const mesh = new THREE.Mesh(geo, mat);
+    const ran = Math.random()*360;
+    const ran2 = Math.random()*360;
+    const ran3 = Math.random()*360;
 
-    mesh.position.set(0, 0, -10);
-    scene.add(mesh); 
+    class MyCube {
+        constructor() {
+            this.c = new THREE.Mesh(geo, mat);
+            this.c.rotation.set(Math.random()*360, Math.random()*360, Math.random()*360);
+        }
+    }
+
+    const cubeHolder = [];
+    for(let i =0;i<freqData.length; i++) {
+        cubeHolder.push(new MyCube());
+        cubeHolder[i].c.position.set((i-12),0,-10);
+        cubeHolder[i].c.position.x += i+2;
+        cubeHolder[i].c.scale.set = (1,1,1);
+        scene.add(cubeHolder[i].c);
+    }
+
+   // mesh.position.set(0, 0, -10);
+   // scene.add(mesh); 
 
     const directionalLight =  new THREE.DirectionalLight('rgb(255,255,255)', 0.9);
     directionalLight.position.set(0, 0, 10);
@@ -62,18 +81,18 @@ const maingraph = () => {
        renderer.setAnimationLoop(()=>{
        analyser.getByteFrequencyData(freqData);
        //console.log(freqData);
-       mesh.rotation.x += 0.01;
-       mesh.rotation.y += 0.008;
+      
+       // mesh.rotation.x += 0.01;
+      // mesh.rotation.y += 0.008;
        
        for(let i=0; i<freqData.length; i++)  {
         freqRange[i] = map(freqData[i],0,255,0,1);
+        cubeHolder[i].c.rotation.x += 0.01;
+        cubeHolder[i].c.rotation.y += 0.008;
+        cubeHolder[i].c.scale.x = Math.abs(freqRange[i]*4.0);
        }
        
-
-       
-
-       //console.log(mx);
-       mesh.scale.x = freqRange[4];
+      // mesh.scale.x = freqRange[4];
        stats.update();
        
        renderer.render(scene, camera);
