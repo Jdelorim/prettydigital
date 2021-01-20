@@ -1,7 +1,7 @@
 'use strict'
 
 if(window.location.pathname === '/prettydigital') {
-   
+   console.log('jjjjj');
     //const stats = new Stats();
     //document.body.appendChild(stats.domElement); 
     const scene = new THREE.Scene();

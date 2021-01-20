@@ -1,4 +1,5 @@
 module.exports = (app) => {
+    
     app.get("/", (req, res) => {
         res.render("index", {title: "Pretty Digital"});
     });
@@ -9,5 +10,9 @@ module.exports = (app) => {
 
     app.get("/audioviz", (req, res) => {
         res.render("audioviz", {title: "viz"});
+    });
+
+    app.get("/importModel", (req, res) => {
+        res.render("importModel", {title: "importModel"});
     });
 }
