@@ -1,9 +1,10 @@
 'use strict'
 
 if(window.location.pathname === '/prettydigital') {
-   console.log('jjjjj');
-    //const stats = new Stats();
-    //document.body.appendChild(stats.domElement); 
+   
+    // const stats = new Stats();
+    // document.body.appendChild(stats.domElement); 
+
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x5f5f0f);
      
@@ -41,7 +42,7 @@ if(window.location.pathname === '/prettydigital') {
                 value: 0.0
             },
         },
-        //wireframe: true,
+        wireframe: false,
         uniformsNeedUpdate: true,
         vertexShader: _VS,
         fragmentShader: _FS,
@@ -59,7 +60,7 @@ if(window.location.pathname === '/prettydigital') {
                 value: 0.0
             },
         },
-        wireframe: true,
+        wireframe: false,
         uniformsNeedUpdate: true,
         vertexShader: _VS,
         fragmentShader: _FS,
@@ -69,25 +70,27 @@ if(window.location.pathname === '/prettydigital') {
     const mesh = new THREE.Mesh(geo, mat);
     //LOADER
      ////////////GLTF Model Loading//////////
-     var loadMesh;
+     let loadMesh;
     
      const loader = new THREE.GLTFLoader();
      
      loader.load( '../assests/models/platonic1REV.gltf', function ( gltf ) {
-     loadMesh = gltf.scene;
+     loadMesh = gltf.scene.children[0];
      
      //console.log('josh material',mat1);
      //loadMesh.material = mat1;
      
-     loadMesh.material = new THREE.MeshLambertMaterial({
-         fog: false,
-         color: 'rgb(255,192,203)'
-    });
+    //  loadMesh.material = new THREE.MeshLambertMaterial({
+    //      color: 'rgb(255,192,203)'
+    // });
+
+    loadMesh.material = mat1;
      
      loadMesh.position.set(0,0,0);
      loadMesh.scale.set(5,5,5);
      console.log('sho my mesh', loadMesh);
      scene.add( loadMesh );
+     AniLoop();
      
      }, undefined, function ( error ) {
      console.error( error );
@@ -98,7 +101,7 @@ if(window.location.pathname === '/prettydigital') {
     //lighting
     //const light = new THREE.PointLight('rgb(255,255,255)', 1, 50);
     //light.position.set(-2,0,0);
-    const directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0 );
+    const directionalLight = new THREE.DirectionalLight( 'rgb(1,0,0)', 1.0 );
     directionalLight.position.set( 0, 40, 500 );
 	scene.add( directionalLight );
     //mesh
@@ -112,12 +115,16 @@ if(window.location.pathname === '/prettydigital') {
 
             const c1 = new THREE.Vector3(1,0,0);
             const c2 = new THREE.Vector3(0,1,0);
+            const c3 = new THREE.Vector3(0,0,1);
             const jtime = performance.now()/1000.0;
             const jsin = Math.sin((jtime * 2.0) * 0.5 + 0.5);
             const newSphereColor = c1.lerp(c2, jsin);
+            const newSphereColor2 = c2.lerp(c3, jsin);
 
             mat.uniforms.sphereColor.value = newSphereColor;
             mat.uniforms.jtime.value = jtime*2.0;
+            mat1.uniforms.sphereColor.value = newSphereColor2;
+            mat1.uniforms.jtime.value = jtime*2.0;
             
             if(loadMesh) {
                 loadMesh.rotation.z += 0.0034;
@@ -128,5 +135,5 @@ if(window.location.pathname === '/prettydigital') {
         });
     }
     
-    AniLoop();
+    
 }
